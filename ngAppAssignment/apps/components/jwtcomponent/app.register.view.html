@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>Register</title>
+</head>
+<body>
+    <div class="container">
+        <div>
+                <span style="color: red;">{{message}}</span>
+        </div>
+        
+        <form name="frmUserRegi" [formGroup]="frmUserRegi" (submit)="signUp()">
+            <div class="form-group">
+               <label for="username">UserName</label>
+               <input type="text" name="userName"class="form-control" formControlName="userName" (change)="checkUsername()"/>
+
+               <div *ngIf="frmUserRegi.controls.userName.dirty && !frmUserRegi.controls.userName.valid" class="alert alert-danger" >
+                    <p *ngIf="frmUserRegi.controls.userName.errors.required">Username is must</p>
+                    <p *ngIf="frmUserRegi.controls.userName.errors.minlength">Username required min 5 character</p>
+               </div>
+               
+           </div>
+
+   
+           <div class="form-group">
+               <label for="pass">Password</label>
+               <input type="password" name="password" class="form-control" formControlName="password"/>
+
+               <div *ngIf="frmUserRegi.controls.password.dirty && !frmUserRegi.controls.password.valid" class="alert alert-danger" >
+                        <p *ngIf="frmUserRegi.controls.password.errors.required">Password is must</p>
+
+                </div>
+           </div>
+   
+           <div class="form-group">
+                <label for="pass">Confirm Password</label>
+                <input type="password" name="cpassword" class="form-control" formControlName="cpassword"/>
+
+                <div *ngIf="frmUserRegi.controls.cpassword.dirty && !frmUserRegi.controls.cpassword.valid" class="alert alert-danger" >
+                        <p *ngIf="frmUserRegi.controls.cpassword.errors.required">Confirm Password is must</p>
+
+                </div>
+            </div>
+           <div class="form-group">
+               <input type="button" class="btn btn-success" value="New" (click)="cancle()"/>
+               <input type="submit" class="btn btn-success" [disabled]="!frmUserRegi.valid" value="Save"/>
+           </div>
+
+           <div class="form-group">
+                <a [routerLink]='["/login"]'>Already Registered User</a>
+            </div>
+       </form>
+
+       
+
+    </div>
+</body>
+</html>

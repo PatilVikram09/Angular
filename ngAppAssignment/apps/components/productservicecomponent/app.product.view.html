@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Product</title>
+    
+</head>
+<body>
+    <div class="container">
+            <div class="form-group">
+                <label for="proId">Product Id</label>
+                <input type="text" class="form-control" [(ngModel)]="product.ProductId"/>
+            </div>
+    
+            <div class="form-group">
+                <label for="proName">Product Name</label>
+                <input type="text" class="form-control" [(ngModel)]="product.ProductName"/>
+            </div>
+    
+            <div class="form-group">
+                <label for="proCat">Product Category</label>
+                <select class="form-control" [(ngModel)]="product.CategoryName">
+                    <option *ngFor="let c of categories" value="{{c}}">{{c}}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="proPrice">Manufacturer</label>
+                <input type="text" class="form-control" [(ngModel)]="product.Manufacturer"/>
+            </div>
+    
+            <div class="form-group">
+                <label for="proPrice">Product Price</label>
+                <input type="text" class="form-control" [(ngModel)]="product.Price"/>
+            </div>
+    
+            <div class="form-group">
+                <input type="button" class="btn btn-default" value="New" (click)="clear()"/>
+                <input type="button" class="btn btn-success" value="Submit" (click)="save()"/>
+            </div>
+    </div>
+
+    <div class="container" style="margin-top: 10px; margin-bottom: 20px;">
+
+        <input type="text" class="form-control"  (input)="search($event.target.value)" placeholder="Search"/>
+   
+    </div>
+        
+    <div class="container">
+        <table class="table table-bordered table-striped"> 
+            <thead>
+                <tr>
+                    <th>Product Id</th>
+                    <th>Product Name</th>
+                    <th>Category Name</th>
+                    <th>Manufacturer</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let p of products">
+                    <td>{{p.ProductId}}</td>
+                    <td>{{p.ProductName}}</td>
+                    <td>{{p.CategoryName}}</td>
+                    <td>{{p.Manufacturer}}</td>
+                    <td>{{p.Price}}</td>
+                    <td>
+                        <input type="button" class="btn btn-success" value="Edit" (click)="update(p)"/>
+                        <input type="button" class="btn btn-danger" value="Delete" (click)="delete(p.ProductId)"/>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+</body>
+   
+</html>

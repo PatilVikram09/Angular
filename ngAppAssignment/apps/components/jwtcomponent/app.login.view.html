@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <div class="container" style="margin-top: 50px;">
+            <div>
+                    <span style="color: red;">{{message}}</span>
+            </div>
+            <form name="frmLogin" [formGroup]="frmLogin" (submit)="signIn()">
+                    <div class="form-group">
+                       <label for="username">UserName</label>
+                       <input type="text" name="userName"class="form-control" formControlName="userName"/>
+        
+                       <div *ngIf="frmLogin.controls.userName.dirty && !frmLogin.controls.userName.valid" class="alert alert-danger" >
+                            <p *ngIf="frmLogin.controls.userName.errors.required">Username is must</p>
+                       </div>
+        
+                   </div>
+           
+                   <div class="form-group">
+                       <label for="pass">Password</label>
+                       <input type="password" name="password" class="form-control" formControlName="password"/>
+        
+                       <div *ngIf="frmLogin.controls.password.dirty && !frmLogin.controls.password.valid" class="alert alert-danger" >
+                                <p *ngIf="frmLogin.controls.password.errors.required">Password is must</p>
+        
+                        </div>
+                   </div>
+                   <div class="form-group">
+                       <input type="button" class="btn btn-success" value="Cancle" (click)="cancle()"/>
+                       <input type="submit" class="btn btn-success" [disabled]="!frmLogin.valid" value="Sign In"/>
+                   </div>
+        
+                   <div class="form-group">
+                        <a [routerLink]='["/register"]'>Register</a>
+                    </div>
+               </form>
+    </div>
+</body>
+</html>
